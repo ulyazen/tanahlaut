@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Rka extends Model
 {
     use HasFactory;
+    protected $table = 'rka';
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'jenis',
+        'jenis_barang',
+        'kode_rekening',
+        'jenis_pajak',
     ];
 }

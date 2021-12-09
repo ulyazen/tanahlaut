@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PraRka extends Model
+class Nota extends Model
 {
     use HasFactory;
-    protected $table = 'pra_rka';
+    protected $table = 'nota';
     protected $fillable = [
-        'jenis',
-        'jenis_barang',
-        'kode_rekening',
-        'jenis_pajak',
+        'jenis_belanja',
+        'jumlah_harga',
+        'file_nota',
+        'file_nota_path',
+        'id_rka'
     ];
 }

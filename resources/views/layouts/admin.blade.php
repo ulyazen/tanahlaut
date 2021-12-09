@@ -33,38 +33,10 @@
         <div class="scrollbar-inner">
             <!-- Brand -->
             <div class="sidenav-header  align-items-center">
-                <a class="navbar-brand" href="{{route('home')}}">
-                    <img src="{{ secure_asset('assets/img/brand/blue.png')}}" class="navbar-brand-img">
+                <a class="navbar-brand" href="javascript:void(0)">
+                    <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
                 </a>
             </div>
-            @if(Auth::check() && Auth::user()->is_user == 1)
-            <div class="navbar-inner">
-                <!-- Collapse -->
-                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                    <!-- Nav items -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{route('home')}}">
-                                <i class="ni ni-tv-2 text-primary"></i>
-                                <span class="nav-link-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.spj')}}">
-                                <i class="ni ni-planet text-orange"></i>
-                                <span class="nav-link-text">Surat Perjanjian Pencairan</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.bantuan')}}">
-                                <i class="ni ni-single-02 text-yellow"></i>
-                                <span class="nav-link-text">Bantuan</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            @elseif (Auth::check() && Auth::user()->is_user == 1 && Auth::user()->is_admin == 1)
             <div class="navbar-inner">
                 <!-- Collapse -->
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
@@ -76,10 +48,39 @@
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Schools.html">
+                                <i class="ni ni-planet text-orange"></i>
+                                <span class="nav-link-text">Schools</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html">
+                                <i class="ni ni-single-02 text-yellow"></i>
+                                <span class="nav-link-text">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tables.html">
+                                <i class="ni ni-bullet-list-67 text-default"></i>
+                                <span class="nav-link-text">Tables</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">
+                                <i class="ni ni-key-25 text-info"></i>
+                                <span class="nav-link-text">Login</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.html">
+                                <i class="ni ni-circle-08 text-pink"></i>
+                                <span class="nav-link-text">Register</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            @endif
         </div>
     </nav>
     <div class="main-content" id="panel">
@@ -91,7 +92,7 @@
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src="{{ secure_asset('assets/img/theme/team-4.jpg')}}">
+                                        <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
                                     </span>
                                     <div class="media-body  ml-2  d-none d-lg-block">
                                         <span class="mb-0 text-sm  font-weight-bold">Admin</span>
@@ -100,7 +101,12 @@
                             </a>
 
                             <div class="dropdown-menu  dropdown-menu-right ">
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-single-02"></i>
+                                    <span>My profile</span>
+                                </a>
 
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                     <i class="ni ni-user-run"></i>
@@ -125,7 +131,6 @@
                         </div>
                     </div>
                     <!-- Card stats -->
-                    @if(Auth::check() && Auth::user()->is_user == 1)
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
@@ -136,11 +141,9 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">Pra RKA</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <a href="{{route('user.pra-rka')}}">
-                                                <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                                    <i class="ni ni-active-40"></i>
-                                                </div>
-                                            </a>
+                                            <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                                <i class="ni ni-active-40"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -155,18 +158,18 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">RKA</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <a href="{{route('user.rka')}}">
-                                                <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                                                    <i class="ni ni-chart-pie-35"></i>
-                                                </div>
-                                            </a>
+                                            <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                                <i class="ni ni-chart-pie-35"></i>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
+                                <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
@@ -184,6 +187,7 @@
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card card-stats">
+                                <!-- Card body -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
@@ -195,13 +199,11 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @elseif (Auth::check() && Auth::user()->is_user == 1 && Auth::user()->is_admin == 1)
-
-                    @endif
                 </div>
             </div>
         </div>
