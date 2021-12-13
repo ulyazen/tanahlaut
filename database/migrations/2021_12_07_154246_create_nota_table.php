@@ -17,6 +17,7 @@ class CreateNotaTable extends Migration
             $table->id();
             $table->enum('jenis_belanja', ['Barang', 'Jasa', 'Modal']);
             $table->decimal('jumlah_harga');
+            $table->decimal('total');
             $table->string('file_nota');
             $table->foreignId('id_rka')->constrained('rka');
             $table->timestamps();

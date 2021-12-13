@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Bku;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 class BkuController extends Controller
 {
@@ -14,7 +17,34 @@ class BkuController extends Controller
      */
     public function index()
     {
-        //
+        $saldotahunlalu = Bku::where('jenis', 'Saldo Tahun Lalu')
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        $saldotunai = Bku::where('jenis', 'Saldo Tunai')
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        $belanjabarang = Bku::where('jenis', 'Belanja Barang dan Jasa')
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        $belanjamodal = Bku::where('jenis', 'Belanja Modal')
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        return view('user.bku', [
+            'title' => 'Bku',
+            'saldotahunlalu' =>  $saldotahunlalu,
+            'saldotunai' => $saldotunai,
+            'belanjabarang' => $belanjabarang,
+            'belanjamodal' => $belanjamodal
+        ]);
+    }
+
+    public function admin()
+    {
+        return view('admin.bku', ['title' => 'Bku']);
     }
 
     /**
@@ -22,9 +52,9 @@ class BkuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createBKU()
     {
-        //
+        return view('user.bku.add', ['title' => 'Bku']);
     }
 
     /**
@@ -35,7 +65,29 @@ class BkuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'jenis' => 'required',
+            'jumlah' => 'required',
+            'is_added' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        try {
+            $bku = Bku::create($request->all());
+            $response = [
+                'message' => 'bku created',
+                'data' => $bku
+            ];
+            response()->json($response, Response::HTTP_CREATED);
+            return redirect()->route('user.bku')
+                ->with('success', 'bku created successfully.');
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
 
     /**

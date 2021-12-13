@@ -20,6 +20,9 @@ class CreateRkaTable extends Migration
             $table->string('kode_rekening');
             $table->enum('jenis_pajak', ['PPN 10%', 'PPH23 4%', 'Pajak Daerah 10%', 'PPH21 5%']);
             $table->boolean('is_upload_nota')->default(0);
+            $table->boolean('is_approve_admin_zona')->default(0);
+            $table->boolean('is_approve_admin')->default(0);
+            $table->boolean('is_approve_super_admin')->default(0);
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nota;
+use App\Models\Rka;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
@@ -41,21 +42,18 @@ class NotaController extends Controller
         $validator = Validator::make($request->all(), [
             'jenis_belanja' => 'required',
             'jumlah_harga' => 'required',
-            'file_nota' => 'required|max:4096',
-
+            'file_nota' => 'required|mimes:pdf|max:4096',
             'id_rka' => 'required',
         ]);
-
+        $id = $request->input('id_rka');
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
             $nota = Nota::create($request->all());
-            $name = $request->file('file_nota')->getClientOriginalName();
-            $path = $request->file('file_nota')->store('public/files');
-            $save = new Nota;
-            $save->name = $name;
-            $save->path = $path;
+            Rka::where('id', $id)->update(array('is_upload_nota' => true));
+            $fileName = time() . '.' . $request->file_nota->extension();
+            $request->file_nota->move(public_path('files'), $fileName);
             $response = [
                 'message' => 'nota created',
                 'data' => $nota

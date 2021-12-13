@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use App\Exports\AllPraRkaExport;
+use App\Exports\BarangJasaPraRkaExport;
+use App\Exports\BelanjaModalPraRkaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PraRkaController extends Controller
 {
@@ -21,12 +25,12 @@ class PraRkaController extends Controller
     }
     public function index()
     {
-        return view('user.pra');
+        return view('user.pra', ['title' => 'Pra Rka']);
     }
 
     public function admin()
     {
-        return view('admin.pra');
+        return view('admin.pra', ['title' => 'Pra Rka']);
     }
 
     public function showBarangJasa()
@@ -35,7 +39,7 @@ class PraRkaController extends Controller
             ->orderBy('created_at')
             ->take(5)
             ->get();
-        return view('user.pra.barangjasa', ['barangjasas' => $barangjasa]);
+        return view('user.pra.barangjasa', ['title' => 'Pra Rka', 'barangjasas' => $barangjasa]);
     }
     public function showBelanjaModal()
     {
@@ -43,7 +47,7 @@ class PraRkaController extends Controller
             ->orderBy('created_at')
             ->take(5)
             ->get();
-        return view('user.pra.belanjamodal', ['belanjamodals' => $belanjamodal]);
+        return view('user.pra.belanjamodal', ['title' => 'Pra Rka', 'belanjamodals' => $belanjamodal]);
     }
     /**
      * Show the form for creating a new resource.
@@ -52,11 +56,11 @@ class PraRkaController extends Controller
      */
     public function createBarangJasa()
     {
-        return view('user.pra.barangjasa.add');
+        return view('user.pra.barangjasa.add', ['title' => 'Pra Rka']);
     }
     public function createBelanjaModal()
     {
-        return view('user.pra.belanjamodal.add');
+        return view('user.pra.belanjamodal.add', ['title' => 'Pra Rka']);
     }
 
     /**
@@ -122,10 +126,34 @@ class PraRkaController extends Controller
      * @param  \App\Models\PraRka  $praRka
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PraRka $praRka)
+    public function update(Request $request, $id)
     {
-        //
+        $prarka = PraRka::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'jenis' => 'required',
+            'jenis_barang' => 'required',
+            'kode_rekening' => 'required',
+            'jenis_pajak' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        try {
+            $prarka->update($request->all());
+            $response = [
+                'message' => 'PraRka updated',
+                'data' => $prarka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -133,8 +161,35 @@ class PraRkaController extends Controller
      * @param  \App\Models\PraRka  $praRka
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PraRka $praRka)
+    public function destroy($id)
     {
-        //
+        $prarka = PraRka::findOrFail($id);
+        try {
+            $prarka->delete();
+            $response = [
+                'message' => 'PraRka deleted',
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
+    }
+
+    public function exportAll()
+    {
+        $filename = 'exportAll' . date('Y-m-d-His') . '.xlsx';
+        return Excel::download(new AllPraRkaExport, $filename);
+    }
+    public function exportBarangJasa()
+    {
+        $filename = 'exportBarangJasa' . date('Y-m-d-His') . '.xlsx';
+        return Excel::download(new BarangJasaPraRkaExport, $filename);
+    }
+    public function exportBelanjaModal()
+    {
+        $filename = 'exportBelanjaModal' . date('Y-m-d-His') . '.xlsx';
+        return Excel::download(new BelanjaModalPraRkaExport, $filename);
     }
 }

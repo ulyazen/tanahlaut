@@ -14,7 +14,12 @@ class SpjController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.spj', ['title' => 'Spj']);
+    }
+
+    public function admin()
+    {
+        return view('admin.spj', ['title' => 'Spj']);
     }
 
     /**

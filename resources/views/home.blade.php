@@ -12,9 +12,9 @@
                         <h5 class="h3 text-white mb-0">{{ now()->toDateTimeString() }}</h5>
                     </div>
                 </div>
-            </div>
+               </div>
             <div class="card-body">
-                @if (session('error'))
+                 @if (session('error'))
                 <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>

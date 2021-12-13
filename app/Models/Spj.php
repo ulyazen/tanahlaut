@@ -8,9 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Spj extends Model
 {
     use HasFactory;
+    protected $table = 'spj';
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'file_pra_rka',
+        'file_rka',
+        'file_bku',
+        'file_lra_bos',
+        'file_register',
+        'file_berita',
+        'file_k7',
+        'is_approve_admin_zona',
+        'is_approve_admin',
+        'is_approve_super_admin',
     ];
 }

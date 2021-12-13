@@ -14,7 +14,12 @@ class BantuanController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.bantuan', ['title' => 'Bantuan']);
+    }
+
+    public function admin()
+    {
+        return view('admin.bantuan', ['title' => 'Bantuan']);
     }
 
     /**

@@ -15,6 +15,16 @@ class CreateSpjTable extends Migration
     {
         Schema::create('spj', function (Blueprint $table) {
             $table->id();
+            $table->string('file_pra_rka');
+            $table->string('file_rka');
+            $table->string('file_bku');
+            $table->string('file_lra_bos');
+            $table->string('file_register');
+            $table->string('file_berita');
+            $table->string('file_k7');
+            $table->boolean('is_approve_admin_zona')->default(0);
+            $table->boolean('is_approve_admin')->default(0);
+            $table->boolean('is_approve_super_admin')->default(0);
             $table->timestamps();
         });
     }

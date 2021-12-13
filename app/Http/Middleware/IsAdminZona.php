@@ -7,7 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsAdminZona
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->is_admin == 1 &&  Auth::user()->is_admin_zona == 1 &&  Auth::user()->is_super_admin == 1) {
+        if (Auth::user() &&  Auth::user()->is_admin_zona == 1) {
             return $next($request);
         }
         return redirect('home')->with('error', 'You have not admin access');

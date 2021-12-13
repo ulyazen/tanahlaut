@@ -35,7 +35,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                 </div>
-                                <input id="name" type="text" placeholder="Name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" placeholder="Nama Sekolah" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -79,6 +79,92 @@
                                 <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <label class="form-control-label col-sm-2 pt-0">Pilih Zona</label>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Pelaihari_I" value="Pelaihari I">
+                                        <label class="form-check-label" for="Pelaihari_I">
+                                            Pelaihari I
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Bati-Bati" value="Bati-Bati">
+                                        <label class="form-check-label" for="Bati-Bati">
+                                            Bati-Bati
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Takisung" value="Takisung">
+                                        <label class="form-check-label" for="Takisung">
+                                            Takisung
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Pelaihari_II" value="Pelaihari II">
+                                        <label class="form-check-label" for="Pelaihari_II">
+                                            Pelaihari II
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Kurau" value="Kurau">
+                                        <label class="form-check-label" for="Kurau">
+                                            Kurau
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Panyipatan" value="Panyipatan">
+                                        <label class="form-check-label" for="Panyipatan">
+                                            Panyipatan
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Bajuin" value="Bajuin">
+                                        <label class="form-check-label" for="Bajuin">
+                                            Bajuin
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Bumi_Makmur" value="Bumi Makmur">
+                                        <label class="form-check-label" for="Bumi_Makmur">
+                                            Bumi Makmur
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Jorong" value="Jorong">
+                                        <label class="form-check-label" for="Jorong">
+                                            Jorong
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Tambang_Ulang" value="Tambang Ulang">
+                                        <label class="form-check-label" for="Tambang_Ulang">
+                                            Tambang Ulang
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Batu_Ampar" value="Batu Ampar'">
+                                        <label class="form-check-label" for="Batu_Ampar">
+                                            Batu Ampar
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="zona" id="Kintap" value="Kintap">
+                                        <label class="form-check-label" for="Kintap">
+                                            Kintap
+                                        </label>
+                                    </div>
+                                </div>
+                                @error('jenis_pajak')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </fieldset>
+
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">

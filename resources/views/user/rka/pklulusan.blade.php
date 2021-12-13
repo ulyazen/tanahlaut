@@ -39,11 +39,19 @@
                                     <span class="d-md-block">Hapus</span>
                                 </a>
                             </li>
+                            @if ($pklulusan->is_upload_nota==0)
                             <li class="nav-item mr-2 mr-md-0">
                                 <a href="{{route('user.rka.nota.add', $pklulusan->id)}}" class="nav-link py-2 px-3 bg-success active">
                                     <span class="d-md-block">Upload Nota</span>
                                 </a>
                             </li>
+                            @else
+                            <li class="nav-item mr-2 mr-md-0">
+                                <a href="" class="nav-link py-2 px-3 bg-success active">
+                                    <span class="d-md-block">Kwitansi</span>
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

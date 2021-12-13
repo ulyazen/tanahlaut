@@ -23,12 +23,12 @@ class RkaController extends Controller
 
     public function index()
     {
-        return view('user.rka');
+        return view('user.rka', ['title' => 'Rka']);
     }
 
     public function admin()
     {
-        return view('admin.rka');
+        return view('admin.rka', ['title' => 'Rka']);
     }
 
     public function showPKLulusan()
@@ -37,7 +37,7 @@ class RkaController extends Controller
             ->orderBy('created_at')
             ->take(5)
             ->get();
-        return view('user.rka.pklulusan', ['pklulusans' => $pklulusan]);
+        return view('user.rka.pklulusan', ['title' => 'Rka', 'pklulusans' => $pklulusan]);
     }
 
     /**
@@ -47,11 +47,11 @@ class RkaController extends Controller
      */
     public function createPKLulusan()
     {
-        return view('user.rka.pklulusan.add');
+        return view('user.rka.pklulusan.add', ['title' => 'Rka']);
     }
     public function createNota()
     {
-        return view('user.nota');
+        return view('user.nota', ['title' => 'Rka']);
     }
 
     /**

@@ -14,5 +14,8 @@ class Rka extends Model
         'jenis_barang',
         'kode_rekening',
         'jenis_pajak',
+        'is_approve_admin_zona',
+        'is_approve_admin',
+        'is_approve_super_admin',
     ];
 }
