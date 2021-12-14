@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/nucleo/css/nucleo.css ')}}" type="text/css">
-    <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"
+        type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ secure_asset('/assets/css/argon.css?v=1.2.0')}}" type="text/css">
 
@@ -29,13 +30,16 @@
 
 <body class="bg-default">
     <div id="app">
-        <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+        <nav id="navbar-main"
+            class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
             <div class="container">
                 <a class="navbar-brand" href="dashboard.html">
                     <img src="{{ secure_asset('assets/img/brand/white.png') }}">
                 </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -67,7 +71,8 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 

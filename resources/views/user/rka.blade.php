@@ -9,8 +9,8 @@
     </ul>
 </div>
 <div class="row">
-    <div class="col-xl-12">
-        <div class="card mt-6">
+    <div class="col-xl-12 mt-6">
+        <div class="card ">
             <div class="card-body bg-transparent">
                 <div class="row align-items-center">
                     <div class="col">

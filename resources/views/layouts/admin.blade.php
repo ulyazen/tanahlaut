@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
     <!-- Icons -->
     <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/nucleo/css/nucleo.css ')}}" type="text/css">
-    <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{ secure_asset('/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}"
+        type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ secure_asset('/assets/css/argon.css?v=1.2.0')}}" type="text/css">
 
@@ -89,7 +90,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav align-items-center ml-auto">
                         <li class="nav-item dropdown">
-                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">
                                         <img alt="Image placeholder" src="../assets/img/theme/team-4.jpg">
@@ -141,7 +143,8 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">Pra RKA</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                                            <div
+                                                class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
                                                 <i class="ni ni-active-40"></i>
                                             </div>
                                         </div>
@@ -158,7 +161,8 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">RKA</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                            <div
+                                                class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
                                                 <i class="ni ni-chart-pie-35"></i>
                                             </div>
                                         </div>
@@ -176,7 +180,8 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">BKU</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                            <div
+                                                class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
                                                 <i class="ni ni-money-coins"></i>
                                             </div>
                                         </div>
@@ -194,7 +199,8 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">SPJ</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                            <div
+                                                class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
                                                 <i class="ni ni-chart-bar-32"></i>
                                             </div>
                                         </div>

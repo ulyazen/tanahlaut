@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Storage;
 
 class NotaController extends Controller
 {
@@ -37,6 +38,8 @@ class NotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -50,10 +53,15 @@ class NotaController extends Controller
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $nota = Nota::create($request->all());
+            $file_nota = time() . '_' . $request->file_nota->getClientOriginalName();
+            $filePath1 = $request->file('file_nota')->storeAs('nota', $file_nota, 'public');
+            $nota = Nota::create([
+                'jenis_belanja' => $request->jenis_belanja,
+                'jumlah_harga' => $request->jumlah_harga,
+                'file_nota' => time() . '_' . $request->file_nota->getClientOriginalName(),
+                'id_rka' => $request->id_rka,
+            ]);
             Rka::where('id', $id)->update(array('is_upload_nota' => true));
-            $fileName = time() . '.' . $request->file_nota->extension();
-            $request->file_nota->move(public_path('files'), $fileName);
             $response = [
                 'message' => 'nota created',
                 'data' => $nota
@@ -66,6 +74,11 @@ class NotaController extends Controller
                 'message' => "Failed" . $e->errorInfo
             ]);
         }
+    }
+    public function download($file)
+    {
+
+        return Storage::disk('public')->download('nota/' . $file);
     }
 
     /**

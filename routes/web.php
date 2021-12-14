@@ -47,44 +47,46 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/pengembangan-komptensi-lulusan', [App\Http\Controllers\RkaController::class, 'showPKLulusan'])->name('user.rka.pklulusan');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/add', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
     Route::get('/user/rka/pengembangan-komptensi-lulusan/export', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
-    Route::get('/user/rka/pengembangan-komptensi-lulusan/kwitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
+    Route::get('/user/rka/pengembangan-komptensi-lulusan/kuitansi', [App\Http\Controllers\RkaController::class, 'createPKLulusan'])->name('user.rka.pklulusan.add');
 
     Route::get('/user/rka/nota/{id}', [App\Http\Controllers\RkaController::class, 'createNota'])->name('user.rka.nota.add');
+    Route::get('/user/rka/nota/download/{file}', [App\Http\Controllers\NotaController::class, 'download'])->name('user.rka.nota.download');
 
     Route::get('/user/bku', [App\Http\Controllers\BkuController::class, 'index'])->name('user.bku');
-    Route::get('/user/bku/add', [App\Http\Controllers\BkuController::class, 'index'])->name('user.bku');
+
 
     Route::get('/user/spj', [App\Http\Controllers\SpjController::class, 'index'])->name('user.spj');
+    Route::get('/user/spj/download/{file}', [App\Http\Controllers\SpjController::class, 'download'])->name('user.spj.download');
 
     Route::get('/user/bantuan', [App\Http\Controllers\BantuanController::class, 'index'])->name('user.bantuan');
 });

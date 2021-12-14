@@ -41,17 +41,25 @@
                             </li>
                             @if ($pklulusan->is_upload_nota==0)
                             <li class="nav-item mr-2 mr-md-0">
-                                <a href="{{route('user.rka.nota.add', $pklulusan->id)}}" class="nav-link py-2 px-3 bg-success active">
+                                <a href="{{route('user.rka.nota.add', $pklulusan->id)}}"
+                                    class="nav-link py-2 px-3 bg-success active">
                                     <span class="d-md-block">Upload Nota</span>
                                 </a>
                             </li>
-                            @else
+                            @elseif($pklulusan->is_upload_nota==1 && $pklulusan->file_nota!=null)
+                            <li class="nav-item mr-2 mr-md-0">
+                                <a href="{{route('user.rka.nota.download', $pklulusan->file_nota)}}"
+                                    class="nav-link py-2 px-3 bg-success active">
+                                    <span class="d-md-block">Download Nota</span>
+                                </a>
+                            </li>
                             <li class="nav-item mr-2 mr-md-0">
                                 <a href="" class="nav-link py-2 px-3 bg-success active">
-                                    <span class="d-md-block">Kwitansi</span>
+                                    <span class="d-md-block">Kuitansi</span>
                                 </a>
                             </li>
                             @endif
+
                         </ul>
                     </div>
                 </div>

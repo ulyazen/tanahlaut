@@ -119,10 +119,33 @@ class BkuController extends Controller
      * @param  \App\Models\Bku  $bku
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bku $bku)
+    public function update(Request $request, $id)
     {
-        //
+        $bku = Bku::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'jenis' => 'required',
+            'jumlah' => 'required',
+            'is_added' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        try {
+            $bku->update($request->all());
+            $response = [
+                'message' => 'bku updated',
+                'data' => $bku
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -130,8 +153,19 @@ class BkuController extends Controller
      * @param  \App\Models\Bku  $bku
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bku $bku)
+    public function destroy($id)
     {
-        //
+        $bku = Bku::findOrFail($id);
+        try {
+            $bku->delete();
+            $response = [
+                'message' => 'bku deleted',
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
 }

@@ -16,7 +16,7 @@ class CreateBkuTable extends Migration
         Schema::create('bku', function (Blueprint $table) {
             $table->id();
             $table->enum('jenis', ['Saldo Tahun Lalu', 'Belanja Barang dan Jasa', 'Saldo Tunai', 'Belanja Modal']);
-            $table->decimal('jumlah');
+            $table->decimal('jumlah', 12, 2);
             $table->boolean('is_added')->default(0);
             $table->boolean('is_approve_admin_zona')->default(0);
             $table->boolean('is_approve_admin')->default(0);

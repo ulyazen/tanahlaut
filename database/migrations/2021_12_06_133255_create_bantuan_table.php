@@ -16,7 +16,7 @@ class CreateBantuanTable extends Migration
         Schema::create('bantuan', function (Blueprint $table) {
             $table->id();
             $table->longText('pertanyaan');
-            $table->longText('jawaban');
+            $table->longText('jawaban')->nullable();
             $table->timestamps();
         });
     }

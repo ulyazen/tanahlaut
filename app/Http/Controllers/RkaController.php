@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
 
 class RkaController extends Controller
 {
@@ -33,10 +34,14 @@ class RkaController extends Controller
 
     public function showPKLulusan()
     {
-        $pklulusan = Rka::where('jenis', 'Pengembangan Kompetensi Lulusan')
-            ->orderBy('created_at')
-            ->take(5)
+
+        $pklulusan =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Kompetensi Lulusan')
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota')
+            ->orderBy('rka.created_at')
             ->get();
+
         return view('user.rka.pklulusan', ['title' => 'Rka', 'pklulusans' => $pklulusan]);
     }
 

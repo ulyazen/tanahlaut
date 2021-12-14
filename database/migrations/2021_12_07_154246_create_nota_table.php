@@ -16,8 +16,8 @@ class CreateNotaTable extends Migration
         Schema::create('nota', function (Blueprint $table) {
             $table->id();
             $table->enum('jenis_belanja', ['Barang', 'Jasa', 'Modal']);
-            $table->decimal('jumlah_harga');
-            $table->decimal('total');
+            $table->decimal('jumlah_harga', 12, 2);
+            $table->decimal('total', 12, 2)->nullable();
             $table->string('file_nota');
             $table->foreignId('id_rka')->constrained('rka');
             $table->timestamps();

@@ -23,20 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin_zona')->default(0);
             $table->boolean('is_admin')->default(0);
             $table->boolean('is_super_admin')->default(0);
-            $table->enum('zona', [
-                'Pelaihari I',
-                'Bati-Bati',
-                'Takisung',
-                'Pelaihari II',
-                'Kurau',
-                'Panyipatan',
-                'Bajuin',
-                'Bumi Makmur',
-                'Jorong',
-                'Tambang Ulang',
-                'Batu Ampar',
-                'Kintap'
-            ]);
+            $table->string('zona')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

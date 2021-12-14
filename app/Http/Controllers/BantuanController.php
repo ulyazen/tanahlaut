@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Bantuan;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class BantuanController extends Controller
 {
@@ -40,7 +44,29 @@ class BantuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'pertanyaan' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        try {
+
+            $bantuan = Bantuan::create([
+                'pertanyaan' => $request->pertanyaan,
+            ]);
+            $response = [
+                'message' => 'bantuan created',
+                'data' => $bantuan
+            ];
+            response()->json($response, Response::HTTP_CREATED);
+            return redirect()->route('user.bantuan')
+                ->with('success', 'bantuan created successfully.');
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
 
     /**
