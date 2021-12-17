@@ -2,33 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bantuan;
+use App\Models\Perjanjian;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 
-class BantuanController extends Controller
+class PerjanjianController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $bantuan =  DB::table('bantuan')
-            ->where('id_user', $id)
-            ->select('pertanyaan', 'jawaban')
-            ->get();
-        return view('user.bantuan', ['title' => 'Bantuan',  'bantuans' => $bantuan]);
+        return view('user.perjanjian', ['title' => 'Surat Perjanjian']);
     }
 
     public function admin()
     {
-        $bantuan =  Bantuan::all();
-        return view('admin.bantuan', ['title' => 'Bantuan',  'bantuans' => $bantuan]);
+        return view('admin.perjanjian', ['title' => 'Surat Perjanjian']);
     }
 
     /**
@@ -58,17 +53,17 @@ class BantuanController extends Controller
         }
         try {
 
-            $bantuan = Bantuan::create([
+            $perjanjian = Perjanjian::create([
                 'pertanyaan' => $request->pertanyaan,
                 'id_user' => $request->id_user,
             ]);
             $response = [
-                'message' => 'bantuan created',
-                'data' => $bantuan
+                'message' => 'perjanjian created',
+                'data' => $perjanjian
             ];
             response()->json($response, Response::HTTP_CREATED);
-            return redirect()->route('user.bantuan')
-                ->with('success', 'bantuan created successfully.');
+            return redirect()->route('user.perjanjian')
+                ->with('success', 'perjanjian created successfully.');
         } catch (QueryException $e) {
             return response()->json([
                 'message' => "Failed" . $e->errorInfo
@@ -76,13 +71,14 @@ class BantuanController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bantuan  $bantuan
+     * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function show(Bantuan $bantuan)
+    public function show(Perjanjian $perjanjian)
     {
         //
     }
@@ -90,10 +86,10 @@ class BantuanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Bantuan  $bantuan
+     * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bantuan $bantuan)
+    public function edit(Perjanjian $perjanjian)
     {
         //
     }
@@ -102,10 +98,10 @@ class BantuanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bantuan  $bantuan
+     * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bantuan $bantuan)
+    public function update(Request $request, Perjanjian $perjanjian)
     {
         //
     }
@@ -113,10 +109,10 @@ class BantuanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bantuan  $bantuan
+     * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bantuan $bantuan)
+    public function destroy(Perjanjian $perjanjian)
     {
         //
     }

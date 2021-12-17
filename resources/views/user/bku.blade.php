@@ -47,6 +47,7 @@
                                         <form action="{{ route('Bku.destroy',$saldotahunlalu[0]->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                                             <div class="modal-body">
                                                 Yakin untuk menghapus data tersebut?
                                             </div>
@@ -110,6 +111,7 @@
                                         <form action="{{ route('Bku.destroy',$belanjabarang[0]->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                                             <div class="modal-body">
                                                 Yakin untuk menghapus data tersebut?
                                             </div>
@@ -172,6 +174,7 @@
                                         <form action="{{ route('Bku.destroy',$saldotunai[0]->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                                             <div class="modal-body">
                                                 Yakin untuk menghapus data tersebut?
                                             </div>
@@ -235,6 +238,7 @@
                                         <form action="{{ route('Bku.destroy',$belanjabarang[0]->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                                             <div class="modal-body">
                                                 Yakin untuk menghapus data tersebut?
                                             </div>
@@ -273,6 +277,7 @@
                     <form action="{{ route('Bku.store') }}" method="POST">
                         @csrf
                         @method('POST')
+                        <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                         <div class="modal-body">
                             <div class="pl-lg-4">
                                 <div class="row">
@@ -314,6 +319,7 @@
                     <form action="{{ route('Bku.store') }}" method="POST">
                         @csrf
                         @method('POST')
+                        <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                         <div class="modal-body">
                             <div class="pl-lg-4">
                                 <div class="row">
@@ -356,6 +362,7 @@
                     <form action="{{ route('Bku.store') }}" method="POST">
                         @csrf
                         @method('POST')
+                        <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                         <div class="modal-body">
                             <div class="pl-lg-4">
                                 <div class="row">
@@ -398,6 +405,7 @@
                     <form action="{{ route('Bku.store') }}" method="POST">
                         @csrf
                         @method('POST')
+                        <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                         <div class="modal-body">
                             <div class="pl-lg-4">
                                 <div class="row">

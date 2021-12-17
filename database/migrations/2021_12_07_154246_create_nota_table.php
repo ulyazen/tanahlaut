@@ -20,6 +20,7 @@ class CreateNotaTable extends Migration
             $table->decimal('total', 12, 2)->nullable();
             $table->string('file_nota');
             $table->foreignId('id_rka')->constrained('rka');
+
             $table->timestamps();
         });
     }

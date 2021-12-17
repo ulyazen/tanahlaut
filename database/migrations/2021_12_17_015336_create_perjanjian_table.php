@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBantuanTable extends Migration
+class CreatePerjanjianTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateBantuanTable extends Migration
      */
     public function up()
     {
-        Schema::create('bantuan', function (Blueprint $table) {
+        Schema::create('perjanjian', function (Blueprint $table) {
             $table->id();
-            $table->longText('pertanyaan');
-            $table->longText('jawaban')->nullable();
+            $table->decimal('jumlah', 12, 2);
+            $table->boolean('is_approve_admin_zona')->default(0);
+            $table->boolean('is_approve_admin')->default(0);
+            $table->boolean('is_approve_super_admin')->default(0);
+            $table->string('file_perjanjian');
             $table->string('id_user', 32)->references('id')->on('users');
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ class CreateBantuanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bantuan');
+        Schema::dropIfExists('perjanjian');
     }
 }

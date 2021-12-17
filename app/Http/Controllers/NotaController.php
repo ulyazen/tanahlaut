@@ -52,29 +52,25 @@ class NotaController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        try {
-            $file_nota = time() . '_' . $request->file_nota->getClientOriginalName();
-            $filePath1 = $request->file('file_nota')->storeAs('nota', $file_nota, 'public');
-            $nota = Nota::create([
-                'jenis_belanja' => $request->jenis_belanja,
-                'jumlah_harga' => $request->jumlah_harga,
-                'file_nota' => time() . '_' . $request->file_nota->getClientOriginalName(),
-                'id_rka' => $request->id_rka,
-            ]);
-            Rka::where('id', $id)->update(array('is_upload_nota' => true));
-            $response = [
-                'message' => 'nota created',
-                'data' => $nota
-            ];
 
-            return redirect()->route('user.rka')
-                ->with('success', 'Nota created successfully.');
-        } catch (QueryException $e) {
-            return response()->json([
-                'message' => "Failed" . $e->errorInfo
-            ]);
-        }
+        $file_nota = time() . '_' . $request->file_nota->getClientOriginalName();
+        $filePath1 = $request->file('file_nota')->storeAs('nota', $file_nota, 'public');
+        $nota = Nota::create([
+            'jenis_belanja' => $request->jenis_belanja,
+            'jumlah_harga' => $request->jumlah_harga,
+            'file_nota' => time() . '_' . $request->file_nota->getClientOriginalName(),
+            'id_rka' => $request->id_rka,
+        ]);
+        Rka::where('id', $id)->update(array('is_upload_nota' => true));
+        $response = [
+            'message' => 'nota created',
+            'data' => $nota
+        ];
+
+        return redirect()->route('user.rka')
+            ->with('success', 'Nota created successfully.');
     }
+
     public function download($file)
     {
 

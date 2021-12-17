@@ -25,19 +25,22 @@
                                 <label class="form-control-label col-sm-2 pt-0">Jenis Belanja</label>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="barang" value="Barang">
+                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="barang"
+                                            value="Barang">
                                         <label class="form-check-label" for="barang">
                                             Barang
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="jasa" value="Jasa">
+                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="jasa"
+                                            value="Jasa">
                                         <label class="form-check-label" for="jasa">
                                             Jasa
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="modal" value="Modal">
+                                        <input class="form-check-input" type="radio" name="jenis_belanja" id="modal"
+                                            value="Modal">
                                         <label class="form-check-label" for="modal">
                                             Modal
                                         </label>
@@ -58,7 +61,8 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-jumlah-harga">Jumlah Harga</label>
-                                    <input type="text" id="input-jumlah-harga" name="jumlah_harga" class="form-control" required placeholder="Jumlah Harga">
+                                    <input type="text" id="input-jumlah-harga" name="jumlah_harga" class="form-control"
+                                        required placeholder="Jumlah Harga">
                                     @error('jumlah_harga')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -76,7 +80,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-file-nota">Nota (.pdf)</label>
-                                    <input type="file" name="file_nota" class="form-control-file" placeholder="Choose file" id="input-file-nota">
+                                    <input type="file" name="file_nota" class="form-control-file"
+                                        placeholder="Choose file" id="input-file-nota">
                                     @error('file_nota')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

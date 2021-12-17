@@ -19,10 +19,7 @@ class PraRkaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
         return view('user.pra', ['title' => 'Pra Rka']);
@@ -33,17 +30,19 @@ class PraRkaController extends Controller
         return view('admin.pra', ['title' => 'Pra Rka']);
     }
 
-    public function showBarangJasa()
+    public function showBarangJasa($id)
     {
         $barangjasa = PraRka::where('jenis', 'Barang dan Jasa')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(5)
             ->get();
         return view('user.pra.barangjasa', ['title' => 'Pra Rka', 'barangjasas' => $barangjasa]);
     }
-    public function showBelanjaModal()
+    public function showBelanjaModal($id)
     {
         $belanjamodal = PraRka::where('jenis', 'Belanja Modal')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(5)
             ->get();
@@ -54,7 +53,7 @@ class PraRkaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createBarangJasa()
+    public function createBarangJasa($id)
     {
         return view('user.pra.barangjasa.add', ['title' => 'Pra Rka']);
     }
@@ -76,25 +75,21 @@ class PraRkaController extends Controller
             'jenis_barang' => 'required',
             'kode_rekening' => 'required',
             'jenis_pajak' => 'required',
+            'id_user'  => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-        try {
-            $prarka = PraRka::create($request->all());
-            $response = [
-                'message' => 'pra rka created',
-                'data' => $prarka
-            ];
-            response()->json($response, Response::HTTP_CREATED);
-            return redirect()->route('user.pra-rka')
-                ->with('success', 'Pra rka created successfully.');
-        } catch (QueryException $e) {
-            return response()->json([
-                'message' => "Failed" . $e->errorInfo
-            ]);
-        }
+
+        $prarka = PraRka::create($request->all());
+        $response = [
+            'message' => 'pra rka created',
+            'data' => $prarka
+        ];
+        response()->json($response, Response::HTTP_CREATED);
+        return redirect()->route('user.pra-rka')
+            ->with('success', 'Pra rka created successfully.');
     }
 
     /**
@@ -134,6 +129,7 @@ class PraRkaController extends Controller
             'jenis_barang' => 'required',
             'kode_rekening' => 'required',
             'jenis_pajak' => 'required',
+            'id_user'  => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -191,5 +187,54 @@ class PraRkaController extends Controller
     {
         $filename = 'exportBelanjaModal' . date('Y-m-d-His') . '.xlsx';
         return Excel::download(new BelanjaModalPraRkaExport, $filename);
+    }
+    public function updateAdmin($id)
+    {
+        $prarka = PraRka::findOrFail($id);
+        try {
+            $prarka = PraRka::where('id', $id)->update(array('is_approve_admin' => true));
+            $response = [
+                'message' => 'prarka updated',
+                'data' => $prarka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
+    }
+    public function updateAdminZona($id)
+    {
+        $prarka = PraRka::findOrFail($id);
+        try {
+            $prarka = PraRka::where('id', $id)->update(array('is_approve_admin_zona' => true));
+            $response = [
+                'message' => 'prarka updated',
+                'data' => $prarka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
+    }
+
+    public function updateSuperAdmin($id)
+    {
+        $prarka = PraRka::findOrFail($id);
+        try {
+            $prarka = PraRka::where('id', $id)->update(array('is_approve_super_admin' => true));
+            $response = [
+                'message' => 'prarka updated',
+                'data' => $prarka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
 }

@@ -8,16 +8,17 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Tambah Barang dan Jasa</h3>
+                        <h3 class="mb-0">Tambah Pemgembagan dan Implementasi SIstem Penilaian</h3>
                     </div>
 
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('PraRka.store') }}">
+                <form method="POST" action="{{ route('Rka.store') }}">
                     @csrf
                     <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
-                    <input type="hidden" id="input-jenis" id="jenis" name="jenis" value="Barang dan Jasa">
+                    <input type="hidden" id="input-jenis" id="jenis" name="jenis"
+                        value="Pemgembagan dan Implementasi SIstem Penilaian">
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-12">

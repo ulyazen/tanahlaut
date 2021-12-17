@@ -4,7 +4,8 @@
 <div class="col">
     <ul class="nav nav-pills justify-content-end">
         <li class="nav-item">
-            <a href="{{route('user.pra-rka.export')}}" class="btn nav-link py-2 px-3 d-md-block bg-dark active">Export</a>
+            <a href="{{route('user.pra-rka.export')}}"
+                class="btn nav-link py-2 px-3 d-md-block bg-dark active">Export</a>
         </li>
     </ul>
 </div>
@@ -19,7 +20,8 @@
                     <div class="col">
                         <ul class="nav nav-pills justify-content-end">
                             <li class="nav-item mr-2 mr-md-0">
-                                <a href="{{route('user.pra-rka.barang-jasa')}}" class="nav-link py-2 px-3 active">
+                                <a href="{{route('user.pra-rka.barang-jasa', Auth::user()->id)}}"
+                                    class="nav-link py-2 px-3 active">
                                     <span class="d-md-block">Jabarkan</span>
                                 </a>
                             </li>
@@ -37,7 +39,8 @@
                     <div class="col">
                         <ul class="nav nav-pills justify-content-end">
                             <li class="nav-item mr-2 mr-md-0">
-                                <a href="{{route('user.pra-rka.belanja-modal')}}" class="nav-link py-2 px-3 active">
+                                <a href="{{route('user.pra-rka.belanja-modal', Auth::user()->id)}}"
+                                    class="nav-link py-2 px-3 active">
                                     <span class="d-md-block">Jabarkan</span>
                                 </a>
                             </li>

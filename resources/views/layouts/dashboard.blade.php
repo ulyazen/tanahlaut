@@ -25,7 +25,7 @@
         type="text/css">
     <!-- Argon CSS -->
     <link rel="stylesheet" href="{{ secure_asset('/assets/css/argon.css?v=1.2.0')}}" type="text/css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -38,7 +38,8 @@
                     <img src="{{ secure_asset('assets/img/brand/blue.png')}}" class="navbar-brand-img">
                 </a>
             </div>
-            @if(Auth::check() && Auth::user()->is_user == 1)
+            @if(Auth::check() && Auth::user()->is_user == 1 && ( Auth::user()->is_admin == 0 ||
+            Auth::user()->is_admin_zona == 0 || Auth::user()->is_super_admin == 0))
             <div class="navbar-inner">
                 <!-- Collapse -->
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
@@ -51,13 +52,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.spj')}}">
+                            <a class="nav-link" href="{{route('user.spj', Auth::user()->id)}}">
                                 <i class="ni ni-planet text-orange"></i>
                                 <span class="nav-link-text">Surat Perjanjian Pencairan</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.bantuan')}}">
+                            <a class="nav-link" href="{{route('user.bantuan', Auth::user()->id)}}">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text">Bantuan</span>
                             </a>
@@ -65,17 +66,35 @@
                     </ul>
                 </div>
             </div>
-            @elseif (Auth::check() && Auth::user()->is_user == 1 && Auth::user()->is_admin == 1 &&
-            Auth::user()->is_admin_zona == 1 && Auth::user()->is_super_admin == 1)
+            @elseif (Auth::check() && Auth::user()->is_user == 1 && ( Auth::user()->is_admin == 1 ||
+            Auth::user()->is_admin_zona == 1 || Auth::user()->is_super_admin == 1))
             <div class="navbar-inner">
                 <!-- Collapse -->
                 <div class="collapse navbar-collapse" id="sidenav-collapse-main">
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" href="dashboard.html">
+                            <a class="nav-link " href="dashboard.html">
                                 <i class="ni ni-tv-2 text-primary"></i>
                                 <span class="nav-link-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  " href="dashboard.html">
+                                <i class="ni ni-book-bookmark text-primary"></i>
+                                <span class="nav-link-text">Sekolah</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="dashboard.html">
+                                <i class="ni ni-collection text-primary"></i>
+                                <span class="nav-link-text">Tabel</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="dashboard.html">
+                                <i class="ni ni-email-83 text-primary"></i>
+                                <span class="nav-link-text">Surat Perjanjian</span>
                             </a>
                         </li>
                     </ul>
@@ -179,7 +198,7 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">BKU</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <a href="{{route('user.bku')}}">
+                                            <a href="{{route('user.bku', Auth::user()->id)}}">
                                                 <div
                                                     class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
                                                     <i class="ni ni-money-coins"></i>
@@ -199,7 +218,7 @@
                                             <h2 class="card-title text-uppercase mt-4 ml-1">SPJ</h2>
                                         </div>
                                         <div class="col-auto mt-3">
-                                            <a href="{{route('user.spj')}}">
+                                            <a href="{{route('user.spj', Auth::user()->id)}}">
                                                 <div
                                                     class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
                                                     <i class="ni ni-chart-bar-32"></i>

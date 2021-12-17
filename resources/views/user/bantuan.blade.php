@@ -16,12 +16,14 @@
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data" action="{{ route('Bantuan.store') }}">
                     @csrf
+                    <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-pertanyaan">Pertanyaan</label>
-                                    <input type="text" id="input-pertanyaan" name="pertanyaan" class="form-control" required placeholder="Pertanyaan">
+                                    <input type="text" id="input-pertanyaan" name="pertanyaan" class="form-control"
+                                        required placeholder="Pertanyaan">
                                     @error('pertanyaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

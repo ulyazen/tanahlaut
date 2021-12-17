@@ -15,21 +15,25 @@ class BkuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         $saldotahunlalu = Bku::where('jenis', 'Saldo Tahun Lalu')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(1)
             ->get();
         $saldotunai = Bku::where('jenis', 'Saldo Tunai')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(1)
             ->get();
         $belanjabarang = Bku::where('jenis', 'Belanja Barang dan Jasa')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(1)
             ->get();
         $belanjamodal = Bku::where('jenis', 'Belanja Modal')
+            ->where('id_user', $id)
             ->orderBy('created_at')
             ->take(1)
             ->get();
@@ -69,7 +73,9 @@ class BkuController extends Controller
             'jenis' => 'required',
             'jumlah' => 'required',
             'is_added' => 'required',
+            'id_user'  => 'required',
         ]);
+        $id = $request->id_user;
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -81,7 +87,7 @@ class BkuController extends Controller
                 'data' => $bku
             ];
             response()->json($response, Response::HTTP_CREATED);
-            return redirect()->route('user.bku')
+            return redirect()->route('user.bku', $id)
                 ->with('success', 'bku created successfully.');
         } catch (QueryException $e) {
             return response()->json([
@@ -131,14 +137,15 @@ class BkuController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-
+        $id = $request->id_user;
         try {
             $bku->update($request->all());
             $response = [
                 'message' => 'bku updated',
                 'data' => $bku
             ];
-            return response()->json($response, Response::HTTP_OK);
+            return redirect()->route('user.bku', $id)
+                ->with('success', 'bku updated successfully.');
         } catch (QueryException $e) {
             return response()->json([
                 'message' => "Failed" . $e->errorInfo
@@ -153,15 +160,17 @@ class BkuController extends Controller
      * @param  \App\Models\Bku  $bku
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $user = $request->id_user;
         $bku = Bku::findOrFail($id);
         try {
             $bku->delete();
             $response = [
                 'message' => 'bku deleted',
             ];
-            return response()->json($response, Response::HTTP_OK);
+            return redirect()->route('user.bku', $user)
+                ->with('error', 'bku deleted successfully.');
         } catch (QueryException $e) {
             return response()->json([
                 'message' => "Failed" . $e->errorInfo

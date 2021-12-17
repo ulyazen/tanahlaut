@@ -16,5 +16,6 @@ class Bku extends Model
         'is_approve_admin_zona',
         'is_approve_admin',
         'is_approve_super_admin',
+        'id_user'
     ];
 }

@@ -13,7 +13,7 @@ class Nota extends Model
         'jenis_belanja',
         'jumlah_harga',
         'file_nota',
-        'file_nota_path',
         'id_rka'
+
     ];
 }

@@ -21,6 +21,7 @@ class CreateBkuTable extends Migration
             $table->boolean('is_approve_admin_zona')->default(0);
             $table->boolean('is_approve_admin')->default(0);
             $table->boolean('is_approve_super_admin')->default(0);
+            $table->string('id_user', 32)->references('id')->on('users');
             $table->timestamps();
         });
     }

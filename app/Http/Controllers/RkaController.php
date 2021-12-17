@@ -17,10 +17,7 @@ class RkaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index()
     {
@@ -32,17 +29,94 @@ class RkaController extends Controller
         return view('admin.rka', ['title' => 'Rka']);
     }
 
-    public function showPKLulusan()
+    public function showPKLulusan($id)
     {
 
         $pklulusan =  DB::table('rka')
             ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
             ->where('rka.jenis', 'Pengembangan Kompetensi Lulusan')
-            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
             ->orderBy('rka.created_at')
             ->get();
 
         return view('user.rka.pklulusan', ['title' => 'Rka', 'pklulusans' => $pklulusan]);
+    }
+    public function createPKLulusan()
+    {
+        return view('user.rka.pklulusan.add', ['title' => 'Rka']);
+    }
+
+    public function showPSI($id)
+    {
+
+        $psi =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Isi')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.psi', ['title' => 'Rka', 'psis' => $psi]);
+    }
+    public function createPSI()
+    {
+        return view('user.rka.psi.add', ['title' => 'Rka']);
+    }
+
+    public function createPK()
+    {
+        return view('user.rka.pk.add', ['title' => 'Rka']);
+    }
+    public function showPK($id)
+    {
+
+        $pk =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Pendidik dan Tenaga Kependidikan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.pk', ['title' => 'Rka', 'pks' => $pk]);
+    }
+
+    public function showPSK($id)
+    {
+
+        $psk =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Kelulusan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.psk', ['title' => 'Rka', 'psks' => $psk]);
+    }
+    public function createPSK()
+    {
+        return view('user.rka.psk.add', ['title' => 'Rka']);
+    }
+
+    public function createPS()
+    {
+        return view('user.rka.ps.add', ['title' => 'Rka']);
+    }
+    public function showPS($id)
+    {
+
+        $ps =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Saran dan Prasarana Sekolah')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.ps', ['title' => 'Rka', 'pss' => $ps]);
     }
 
     /**
@@ -50,9 +124,75 @@ class RkaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createPKLulusan()
+    public function createPP()
     {
-        return view('user.rka.pklulusan.add', ['title' => 'Rka']);
+        return view('user.rka.pp.add', ['title' => 'Rka']);
+    }
+    public function showPP($id)
+    {
+
+        $pp =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Pengelolaan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.pp', ['title' => 'Rka', 'pps' => $pp]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function showPSP($id)
+    {
+
+        $psp =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Pembiayaan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.psp', ['title' => 'Rka', 'psps' => $psp]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createPSP()
+    {
+        return view('user.rka.psp.add', ['title' => 'Rka']);
+    }
+    public function showPI($id)
+    {
+
+        $pi =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pemgembagan dan Implementasi SIstem Penilaian')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        return view('user.rka.pi', ['title' => 'Rka', 'pis' => $pi]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createPI()
+    {
+        return view('user.rka.pi.add', ['title' => 'Rka']);
     }
     public function createNota()
     {
@@ -72,6 +212,7 @@ class RkaController extends Controller
             'jenis_barang' => 'required',
             'kode_rekening' => 'required',
             'jenis_pajak' => 'required',
+            'id_user'  => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -137,5 +278,54 @@ class RkaController extends Controller
     public function destroy(Rka $rka)
     {
         //
+    }
+    public function updateAdmin($id)
+    {
+        $rka = Rka::findOrFail($id);
+        try {
+            $rka = Rka::where('id', $id)->update(array('is_approve_admin' => true));
+            $response = [
+                'message' => 'rka updated',
+                'data' => $rka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
+    }
+    public function updateAdminZona($id)
+    {
+        $rka = Rka::findOrFail($id);
+        try {
+            $rka = Rka::where('id', $id)->update(array('is_approve_admin_zona' => true));
+            $response = [
+                'message' => 'rka updated',
+                'data' => $rka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
+    }
+
+    public function updateSuperAdmin($id)
+    {
+        $rka = Rka::findOrFail($id);
+        try {
+            $rka = Rka::where('id', $id)->update(array('is_approve_super_admin' => true));
+            $response = [
+                'message' => 'rka updated',
+                'data' => $rka
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => "Failed" . $e->errorInfo
+            ]);
+        }
     }
 }
