@@ -55,6 +55,56 @@
                             </div>
                         </div>
                     </div>
+                                        <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-harga-barang-satuan">Harga Barang Satuan</label>
+                                    <input type="text" id="input-harga-barang-satuan" id="harga_barang_satuan" name="harga_barang_satuan"
+                                        class="form-control" required placeholder="Harga Barang Satuan">
+                                    @error('harga_barang_satuan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-jumlah-barang">Jumlah Barang</label>
+                                    <input type="text" id="input-jumlah-barang" id="jumlah_barang" name="jumlah_barang"
+                                        class="form-control" required placeholder="Jumlah Barang">
+                                    @error('jumlah_barang')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-harga-total">Harga Total</label>
+                                    <input type="text" id="input-harga-total" id="harga_total" name="harga_total"
+                                        class="form-control" required placeholder="Kode Rekening">
+                                    @error('harga_total')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <hr class="my-4" />
                     <!-- Description -->
 
