@@ -22,7 +22,7 @@
                             <li class="nav-item mr-2 mr-md-0">
                                 <a href="{{route('user.pra-rka.barang-jasa', Auth::user()->id)}}"
                                     class="nav-link py-2 px-3 active">
-                                    <span class="d-md-block">Jabarkan</span>
+                                    <span class="d-md-block">Details</span>
                                 </a>
                             </li>
                         </ul>
@@ -41,7 +41,7 @@
                             <li class="nav-item mr-2 mr-md-0">
                                 <a href="{{route('user.pra-rka.belanja-modal', Auth::user()->id)}}"
                                     class="nav-link py-2 px-3 active">
-                                    <span class="d-md-block">Jabarkan</span>
+                                    <span class="d-md-block">Details</span>
                                 </a>
                             </li>
                         </ul>
