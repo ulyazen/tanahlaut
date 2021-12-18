@@ -14,7 +14,7 @@
             <div class="card-body bg-transparent">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h2 class="mb-0">Saldo Tahun Lalu {!! (count($saldotahunlalu)>0)
+                        <h2 class="mb-0">Saldo bulan Lalu {!! (count($saldotahunlalu)>0)
                             ? '<span
                                 class="badge badge-primary">Rp.'.number_format($saldotahunlalu[0]->jumlah,2,",",".").'</span>'
                             : '' !!}</h2>
