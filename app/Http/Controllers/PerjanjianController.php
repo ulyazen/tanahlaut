@@ -8,6 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PerjanjianController extends Controller
 {
@@ -16,14 +17,22 @@ class PerjanjianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('user.perjanjian', ['title' => 'Surat Perjanjian']);
+        $perjanjian = Perjanjian::where('id_user', $id)
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        return view('user.perjanjian', ['title' => 'Pra Rka', 'perjanjian' => $perjanjian]);
     }
 
-    public function admin()
+    public function admin($id)
     {
-        return view('admin.perjanjian', ['title' => 'Surat Perjanjian']);
+        $perjanjian = Perjanjian::where('id_user', $id)
+            ->orderBy('created_at')
+            ->take(1)
+            ->get();
+        return view('admin.perjanjian', ['title' => 'Pra Rka', 'perjanjian' => $perjanjian]);
     }
 
     /**
@@ -45,24 +54,21 @@ class PerjanjianController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'pertanyaan' => 'required',
+            'jumlah' => 'required',
             'id_user'  => 'required',
         ]);
+        $id = $request->id_user;
         if ($validator->fails()) {
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-
-            $perjanjian = Perjanjian::create([
-                'pertanyaan' => $request->pertanyaan,
-                'id_user' => $request->id_user,
-            ]);
+            $perjanjian = Perjanjian::create($request->all());
             $response = [
                 'message' => 'perjanjian created',
                 'data' => $perjanjian
             ];
             response()->json($response, Response::HTTP_CREATED);
-            return redirect()->route('user.perjanjian')
+            return redirect()->route('user.perjanjian', $id)
                 ->with('success', 'perjanjian created successfully.');
         } catch (QueryException $e) {
             return response()->json([
@@ -101,11 +107,32 @@ class PerjanjianController extends Controller
      * @param  \App\Models\Perjanjian  $perjanjian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perjanjian $perjanjian)
+    public function update(Request $request, $id)
     {
-        //
+        $perjanjian = Perjanjian::findOrFail($id);
+        $validator = Validator::make($request->all(), [
+            'file_perjanjian'  => 'required|max:4096',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        $file_perjanjian = time() . '_' . $request->file_perjanjian->getClientOriginalName();
+        $filePath1 = $request->file('file_perjanjian')->storeAs('perjanjian', $file_perjanjian, 'public');
+        Perjanjian::where('id', $id)->update(array('file_perjanjian' => $file_perjanjian));
+
+        $response = [
+            'message' => 'Perjanjian updated',
+            'data' => $perjanjian
+        ];
+        return back()
+            ->with('success', 'File has been uploaded.');
     }
 
+    public function download($file)
+    {
+
+        return Storage::disk('public')->download('perjanjian/' . $file);
+    }
     /**
      * Remove the specified resource from storage.
      *

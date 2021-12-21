@@ -10,7 +10,6 @@
                     <div class="col-8">
                         <h3 class="mb-0">SPJ</h3>
                     </div>
-
                 </div>
             </div>
             <div class="card-body">

@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('Bku', App\Http\Controllers\BkuController::class);
     Route::resource('Spj', App\Http\Controllers\SpjController::class);
     Route::resource('Bantuan', App\Http\Controllers\BantuanController::class);
+    Route::resource('Perjanjian', App\Http\Controllers\PerjanjianController::class);
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -94,6 +95,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/user/spj/{id}', [App\Http\Controllers\SpjController::class, 'index'])->name('user.spj');
     Route::get('/user/spj/download/{file}', [App\Http\Controllers\SpjController::class, 'download'])->name('user.spj.download');
+
+    Route::get('/user/surat-perjanjian/{id}', [App\Http\Controllers\PerjanjianController::class, 'index'])->name('user.perjanjian');
+    Route::get('/user/surat-perjanjian/download/{file}', [App\Http\Controllers\PerjanjianController::class, 'download'])->name('user.perjanjian.download');
 
     Route::get('/user/bantuan/{id}', [App\Http\Controllers\BantuanController::class, 'index'])->name('user.bantuan');
 });

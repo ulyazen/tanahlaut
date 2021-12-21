@@ -52,7 +52,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('user.spj', Auth::user()->id)}}">
+                            <a class="nav-link" href="{{route('user.perjanjian', Auth::user()->id)}}">
                                 <i class="ni ni-planet text-orange"></i>
                                 <span class="nav-link-text">Surat Perjanjian Pencairan</span>
                             </a>
