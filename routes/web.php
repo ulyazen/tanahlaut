@@ -120,4 +120,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::put('/admin/pra-rka/approve-admin-zona', [App\Http\Controllers\SpjController::class, 'approveAdminZona'])->name('admin.pra-rka.approve.admin-zona');
     Route::put('/admin/pra-rka/approve-super-admin', [App\Http\Controllers\SpjController::class, 'approveSuperAdmin'])->name('admin.pra-rka.approve-super-admin');
     Route::get('/admin/pengumuman', [App\Http\Controllers\PengumumanController::class, 'admin'])->name('admin.pengumuman');
+
+    //admin-sekolah
+    Route::get('/admin/sekolah', [App\Http\Controllers\SekolahController::class, 'index'])->name('admin.sekolah');
 });
