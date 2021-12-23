@@ -14,7 +14,8 @@ class Perjanjian extends Model
         'is_approve_admin_zona',
         'is_approve_admin',
         'is_approve_super_admin',
-        'file_nota',
+        'file_perjanjian_sd',
+        'file_perjanjian_smp',
         'id_user'
     ];
 }
