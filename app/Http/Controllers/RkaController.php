@@ -8,6 +8,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class RkaController extends Controller
 {
@@ -36,7 +37,7 @@ class RkaController extends Controller
             ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
             ->where('rka.jenis', 'Pengembangan Kompetensi Lulusan')
             ->where('id_user', $id)
-            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
             ->orderBy('rka.created_at')
             ->get();
 
@@ -46,7 +47,24 @@ class RkaController extends Controller
     {
         return view('user.rka.pklulusan.add', ['title' => 'Rka']);
     }
+    public function kuitansiPKLulusan($id)
+    {
+        // retreive all records from db
+        $pklulusan =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Kompetensi Lulusan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
 
+        // share data to view
+        view()->share('pklulusan', $pklulusan);
+        $pdf = PDF::loadView('user.rka.pklulusan.kuitansi', $pklulusan);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_kompetensi_lulusan.pdf');
+    }
     public function showPSI($id)
     {
 
@@ -64,6 +82,25 @@ class RkaController extends Controller
     {
         return view('user.rka.psi.add', ['title' => 'Rka']);
     }
+    public function kuitansiPSI($id)
+    {
+        // retreive all records from db
+        $psi =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Isi')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $psi);
+        $pdf = PDF::loadView('user.rka.psi.kuitansi', $psi);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_standar_kompetensi.pdf');
+    }
+
 
     public function createPK()
     {
@@ -81,6 +118,24 @@ class RkaController extends Controller
             ->get();
 
         return view('user.rka.pk', ['title' => 'Rka', 'pks' => $pk]);
+    }
+    public function kuitansiPK($id)
+    {
+        // retreive all records from db
+        $pk =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Pendidik dan Tenaga Kependidikan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $pk);
+        $pdf = PDF::loadView('user.rka.pk.kuitansi', $pk);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_pendidik_dan_tenaga_kependidikan.pdf');
     }
 
     public function showPSK($id)
@@ -100,6 +155,24 @@ class RkaController extends Controller
     {
         return view('user.rka.psk.add', ['title' => 'Rka']);
     }
+    public function kuitansiPSK($id)
+    {
+        // retreive all records from db
+        $psk =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Kelulusan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $psk);
+        $pdf = PDF::loadView('user.rka.psk.kuitansi', $psk);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_standar_kelulusan.pdf');
+    }
 
     public function createPS()
     {
@@ -117,6 +190,24 @@ class RkaController extends Controller
             ->get();
 
         return view('user.rka.ps', ['title' => 'Rka', 'pss' => $ps]);
+    }
+    public function kuitansiPS($id)
+    {
+        // retreive all records from db
+        $ps =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Saran dan Prasarana Sekolah')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $ps);
+        $pdf = PDF::loadView('user.rka.ps.kuitansi', $ps);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_sarana_dan_prasarana_sekolah.pdf');
     }
 
     /**
@@ -141,12 +232,26 @@ class RkaController extends Controller
 
         return view('user.rka.pp', ['title' => 'Rka', 'pps' => $pp]);
     }
+    public function kuitansiPP($id)
+    {
+        // retreive all records from db
+        $pp =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Pengelolaan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        // share data to view
+        view()->share('pklulusan', $pp);
+        $pdf = PDF::loadView('user.rka.pp.kuitansi', $pp);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_standar_pengelolaan.pdf');
+    }
+
+
 
     public function showPSP($id)
     {
@@ -162,21 +267,35 @@ class RkaController extends Controller
         return view('user.rka.psp', ['title' => 'Rka', 'psps' => $psp]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function createPSP()
     {
         return view('user.rka.psp.add', ['title' => 'Rka']);
+    }
+
+    public function kuitansiPSP($id)
+    {
+        // retreive all records from db
+        $psp =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembangan Standar Pembiayaan')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $psp);
+        $pdf = PDF::loadView('user.rka.psp.kuitansi', $psp);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_standar_pembiayaan.pdf');
     }
     public function showPI($id)
     {
 
         $pi =  DB::table('rka')
             ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
-            ->where('rka.jenis', 'Pemgembagan dan Implementasi SIstem Penilaian')
+            ->where('rka.jenis', 'Pengembagan dan Implementasi Sistem Penilaian')
             ->where('id_user', $id)
             ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin')
             ->orderBy('rka.created_at')
@@ -194,6 +313,26 @@ class RkaController extends Controller
     {
         return view('user.rka.pi.add', ['title' => 'Rka']);
     }
+
+    public function kuitansiPI($id)
+    {
+        // retreive all records from db
+        $pi =  DB::table('rka')
+            ->join('nota', 'rka.id', '=', 'nota.id_rka', 'full outer')
+            ->where('rka.jenis', 'Pengembagan dan Implementasi Sistem Penilaian')
+            ->where('id_user', $id)
+            ->select('rka.id', 'rka.jenis', 'rka.jenis_barang', 'rka.created_at', 'rka.is_upload_nota', 'nota.file_nota', 'rka.is_approve_admin',  'rka.is_approve_admin_zona',  'rka.is_approve_super_admin', 'id_user')
+            ->orderBy('rka.created_at')
+            ->get();
+
+        // share data to view
+        view()->share('pklulusan', $pi);
+        $pdf = PDF::loadView('user.rka.pi.kuitansi', $pi);
+
+        // download PDF file with download method
+        return $pdf->download('kuitnasi_pengembangan_dan_implementasi_sistem_penilaian.pdf');
+    }
+
     public function createNota()
     {
         return view('user.nota', ['title' => 'Rka']);

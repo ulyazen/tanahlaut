@@ -150,7 +150,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mr-2 mr-md-0">
-                                <a href="" class="nav-link py-2 px-3 bg-success active">
+                                <a <a href="{{route('user.rka.pp.kuitansi', Auth::user()->id)}}"
+                                    class="nav-link py-2 px-3 bg-success active">
                                     <span class="d-md-block">Kuitansi</span>
                                 </a>
                             </li>

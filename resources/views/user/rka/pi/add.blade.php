@@ -8,7 +8,7 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col-8">
-                        <h3 class="mb-0">Tambah Pemgembagan dan Implementasi SIstem Penilaian</h3>
+                        <h3 class="mb-0">Tambah Pengembagan dan Implementasi SIstem Penilaian</h3>
                     </div>
 
                 </div>
@@ -18,7 +18,7 @@
                     @csrf
                     <input type="text" hidden name="id_user" value="{{Auth::user()->id}}">
                     <input type="hidden" id="input-jenis" id="jenis" name="jenis"
-                        value="Pemgembagan dan Implementasi SIstem Penilaian">
+                        value="Pengembagan dan Implementasi Sistem Penilaian">
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
@@ -55,14 +55,16 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-harga-barang-satuan">Harga Barang Satuan</label>
-                                    <input type="text" id="input-harga-barang-satuan" id="harga_barang_satuan" name="harga_barang_satuan"
-                                        class="form-control" required placeholder="Harga Barang Satuan">
+                                    <label class="form-control-label" for="input-harga-barang-satuan">Harga Barang
+                                        Satuan</label>
+                                    <input type="text" id="input-harga-barang-satuan" id="harga_barang_satuan"
+                                        name="harga_barang_satuan" class="form-control" required
+                                        placeholder="Harga Barang Satuan">
                                     @error('harga_barang_satuan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -72,7 +74,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">
@@ -89,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-md-12">

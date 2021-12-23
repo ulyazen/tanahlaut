@@ -141,7 +141,7 @@
             <div class="card-body bg-transparent">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="h3 mb-0">Pemgembagan dan Implementasi SIstem Penilaian</h3>
+                        <h3 class="h3 mb-0">Pengembagan dan Implementasi Sistem Penilaian</h3>
                     </div>
                     <div class="col">
                         <ul class="nav nav-pills justify-content-end">

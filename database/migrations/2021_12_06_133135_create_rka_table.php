@@ -15,7 +15,7 @@ class CreateRkaTable extends Migration
     {
         Schema::create('rka', function (Blueprint $table) {
             $table->id();
-            $table->enum('jenis', ['Pengembangan Kompetensi Lulusan', 'Pengembangan Standar Isi', 'Pengembangan Standar Kelulusan', 'Pengembangan Pendidik dan Tenaga Kependidikan', 'Pengembangan Saran dan Prasarana Sekolah', 'Pengembangan Standar Pengelolaan', 'Pengembangan Standar Pembiayaan', 'Pemgembagan dan Implementasi SIstem Penilaian']);
+            $table->enum('jenis', ['Pengembangan Kompetensi Lulusan', 'Pengembangan Standar Isi', 'Pengembangan Standar Kelulusan', 'Pengembangan Pendidik dan Tenaga Kependidikan', 'Pengembangan Saran dan Prasarana Sekolah', 'Pengembangan Standar Pengelolaan', 'Pengembangan Standar Pembiayaan', 'Pengembagan dan Implementasi Sistem Penilaian']);
             $table->string('jenis_barang');
             $table->string('kode_rekening');
             $table->enum('jenis_pajak', ['PPN 10%', 'PPH23 4%', 'Pajak Daerah 10%', 'PPH21 5%']);
