@@ -67,7 +67,7 @@ class BantuanController extends Controller
                 'data' => $bantuan
             ];
             response()->json($response, Response::HTTP_CREATED);
-            return redirect()->route('user.bantuan')
+            return redirect()->route('user.bantuan', $request->id_user)
                 ->with('success', 'bantuan created successfully.');
         } catch (QueryException $e) {
             return response()->json([
