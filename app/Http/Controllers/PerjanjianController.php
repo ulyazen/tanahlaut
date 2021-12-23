@@ -62,7 +62,12 @@ class PerjanjianController extends Controller
             return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
         try {
-            $perjanjian = Perjanjian::create($request->all());
+            $perjanjian = Perjanjian::create([
+                'jumlah' => $request->jumlah,
+                'file_perjanjian_sd' => 'surat_perjanjian_pencairan_BOS_2021_SD.docx',
+                'file_perjanjian_smp' => 'surat_perjanjian_pencairan_BOS_2021_SMP.docx',
+                'id_user' => $request->id_user,
+            ]);
             $response = [
                 'message' => 'perjanjian created',
                 'data' => $perjanjian
@@ -109,23 +114,6 @@ class PerjanjianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $perjanjian = Perjanjian::findOrFail($id);
-        $validator = Validator::make($request->all(), [
-            'file_perjanjian'  => 'required|max:4096',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-        $file_perjanjian = time() . '_' . $request->file_perjanjian->getClientOriginalName();
-        $filePath1 = $request->file('file_perjanjian')->storeAs('perjanjian', $file_perjanjian, 'public');
-        Perjanjian::where('id', $id)->update(array('file_perjanjian' => $file_perjanjian));
-
-        $response = [
-            'message' => 'Perjanjian updated',
-            'data' => $perjanjian
-        ];
-        return back()
-            ->with('success', 'File has been uploaded.');
     }
 
     public function download($file)
