@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pertanyaan = Bantuan::orderBy('updated_at')
+        $pertanyaan = Bantuan::orderByDesc('updated_at')
             ->get();
         return view('home', ['pertanyaans' => $pertanyaan]);
     }
