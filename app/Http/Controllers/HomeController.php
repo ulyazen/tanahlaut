@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bantuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pertanyaan = Bantuan::orderBy('updated_at')
+            ->get();
+        return view('home', ['pertanyaans' => $pertanyaan]);
     }
 }
