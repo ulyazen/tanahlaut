@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sekolah;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SekolahController extends Controller
@@ -12,9 +13,13 @@ class SekolahController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $arrZona = ['Pelaihari I', 'Bati-Bati', 'Takisung', 'Pelaihari II', 'Kurau', 'Panyipatan', 'Bajuin', 'Bumi Makmur', 'Jorong', 'Tambang Ulang', 'Batu Ampar', 'Kintap'];
+        $user = User::all();
+
+        return view('admin.sekolah', ['users' => $user, "zonas" => $arrZona]);
     }
 
     /**

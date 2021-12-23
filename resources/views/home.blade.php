@@ -9,6 +9,8 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h5 class="text-light text-uppercase ls-1 mb-1">Pengumuman</h5>
+
+                        @if ($pertanyaans == [])
                         @foreach ($pertanyaans as $pertanyaan)
                         <div class="card border-info mt-3">
                             <div class="card-header">Pertanyan : {{$pertanyaan->pertanyaan}}</div>
@@ -18,6 +20,14 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="card border-info mt-3">
+                            <div class="card-header">Tidak ada pertanyaan</div>
+                        </div>
+                        @endif
+
+
+
                     </div>
                 </div>
             </div>

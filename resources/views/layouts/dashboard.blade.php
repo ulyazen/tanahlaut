@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  " href="dashboard.html">
+                            <a class="nav-link  " href="{{route('admin.sekolah')}}">
                                 <i class="ni ni-book-bookmark text-primary"></i>
                                 <span class="nav-link-text">Sekolah</span>
                             </a>

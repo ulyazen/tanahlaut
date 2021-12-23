@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -15,11 +16,18 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'id' => Uuid::uuid4()->getHex(),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'is_user' => 'false',
+            'is_admin_zona' => 'false',
+            'is_admin' => 'false',
+            'is_super_admin' => 'false',
+            'zona' => $this->faker->randomElement(['Pelaihari I', 'Bati-Bati', 'Takisung', 'Pelaihari II', 'Kurau', 'Panyipatan', 'Bajuin', 'Bumi Makmur', 'Jorong', 'Tambang Ulang', 'Batu Ampar', 'Kintap']),
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 
